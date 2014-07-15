@@ -38,6 +38,7 @@ net_2_0_dirs := \
 	System.Runtime.Serialization.Formatters.Soap \
 	Managed.Windows.Forms		\
 	Mono.Data.Sqlite		\
+	System.ComponentModel.DataAnnotations	\
 	System.Web.ApplicationServices	\
 	System.Web			\
 	System.Web.Services		\
@@ -81,7 +82,6 @@ net_2_0_dirs := \
 	System.ServiceModel		\
 	System.Web.Extensions		\
 	System.Web.Extensions.Design	\
-	System.ComponentModel.DataAnnotations	\
 	System.Web.DynamicData		\
 	System.Web.Mvc2			\
 	Mono.C5				\

@@ -137,6 +137,8 @@ namespace System.Web
 		public virtual int TotalBytes { get { NotImplemented (); return 0; } }
 
 #if NET_4_5
+		public virtual ReadEntityBodyMode ReadEntityBodyMode { get { NotImplemented(); return ReadEntityBodyMode.Classic; } }
+
 		public virtual UnvalidatedRequestValuesBase Unvalidated { get { NotImplemented (); return null; } }
 #endif
 

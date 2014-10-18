@@ -1321,6 +1321,7 @@
     <Compile Include="System.Web\ProcessShutdownReason.cs" />
     <Compile Include="System.Web\ProcessStatus.cs" />
     <Compile Include="System.Web\QueueManager.cs" />
+    <Compile Include="System.Web\ReadEntityBodyMode.cs" />
     <Compile Include="System.Web\RequestNotification.cs" />
     <Compile Include="System.Web\RequestNotificationStatus.cs" />
     <Compile Include="System.Web\ServerVariablesCollection.cs" />
@@ -1347,7 +1348,8 @@
     <Compile Include="System.Web\WebROCollection.cs" />
     <Compile Include="System.Web\WebSysDescriptionAttribute.cs" />
     <Compile Include="System.Web\XmlSiteMapProvider.cs" />
-    <Compile Include="System.Web\UplevelHelper.cs" />  </ItemGroup>
+    <Compile Include="System.Web\UplevelHelper.cs" />
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

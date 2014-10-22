@@ -31,17 +31,25 @@ using System.ComponentModel.DataAnnotations;
 
 namespace System.Web.Security
 {
+	[AttributeUsageAttribute(AttributeTargets.Property|AttributeTargets.Field|AttributeTargets.Parameter, AllowMultiple = false)]
+	public class MembershipPasswordAttribute : ValidationAttribute
+	{
+		public string MinNonAlphanumericCharactersError { get; set; }
+		public string MinPasswordLengthError { get; set; }
+		public int MinRequiredNonAlphanumericCharacters { get; set; }
+		public int MinRequiredPasswordLength { get; set; }
+		public string PasswordStrengthError { get; set; }
+		public string PasswordStrengthRegularExpression { get; set; }
+		public Type ResourceType { get; set; }
 
+		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+		{
+			return ValidationResult.Success;
+		}
 
-   [AttributeUsageAttribute(AttributeTargets.Property|AttributeTargets.Field|AttributeTargets.Parameter, AllowMultiple = false)]
-   public class MembershipPasswordAttribute : ValidationAttribute
-   {
-      public string MinNonAlphanumericCharactersError { get; set; }
-      public string MinPasswordLengthError { get; set; }
-      public int MinRequiredNonAlphanumericCharacters { get; set; }
-      public int MinRequiredPasswordLength { get; set; }
-      public string PasswordStrengthError { get; set; }
-      public string PasswordStrengthRegularExpression { get; set; }
-      public Type ResourceType { get; set; }
-   }
+		public override string FormatErrorMessage(string name)
+		{
+			return base.FormatErrorMessage(name);
+		}
+	}
 }

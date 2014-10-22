@@ -126,6 +126,18 @@ namespace System.Web
 			get { return w.Form; }
 		}
 
+#if NET_4_5
+		public override Stream GetBufferedInputStream ()
+		{
+			return w.GetBufferlessInputStream ();
+		}
+
+		public override Stream GetBufferlessInputStream ()
+		{
+			return w.GetBufferlessInputStream ();
+		}
+		#endif
+
 		public override NameValueCollection Headers {
 			get { return w.Headers; }
 		}
@@ -190,6 +202,12 @@ namespace System.Web
 			get { return w.RawUrl; }
 		}
 
+		#if NET_4_5
+		public override ReadEntityBodyMode ReadEntityBodyMode {
+			get { return ReadEntityBodyMode.Classic; }
+		}
+		#endif
+
 		public override string RequestType {
 			get { return w.RequestType; }
 			set { w.RequestType = value; }
@@ -239,7 +257,7 @@ namespace System.Web
 		}
 
 #if NET_4_5
-		public void Abort ()
+		public override void Abort ()
 		{
 			w.WorkerRequest.CloseConnection();
 		}

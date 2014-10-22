@@ -1017,7 +1017,6 @@ namespace System.Web
 				// we don't need to hook up the filter here, because the raw stream should be returned
 				bufferlessInputStream = new BufferlessInputStream (this);
 			}
-
 			return bufferlessInputStream;
 		}
 

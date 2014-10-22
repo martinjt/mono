@@ -1134,9 +1134,9 @@ namespace System.Web
 		{
 			try {
 				response.Write (error);
-				response.Flush (true);
+				//response.Flush (true);
 			} catch (Exception e) {
-				Console.Error.WriteLine ("Error while responding with HttpException: %s", e.ToString());
+				Console.Error.WriteLine ("Error while responding with HttpException: {0}", e.ToString());
 				response.Close ();
 			}
 		}

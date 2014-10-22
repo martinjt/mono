@@ -158,6 +158,18 @@ namespace System.Web
 		{
 			NotImplemented();
 		}
+
+		public virtual Stream GetBufferlessInputStream ()
+		{
+			NotImplemented ();
+			return null;
+		}
+
+		public virtual Stream GetBufferedInputStream ()
+		{
+			NotImplemented ();
+			return null;
+		}
 #endif
 
 		public virtual byte [] BinaryRead (int count)

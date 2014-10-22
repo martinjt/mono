@@ -39,6 +39,7 @@ using System.Security.Permissions;
 using System.Security.Principal;
 using System.Text;
 using System.Web.Caching;
+using System.Threading;
 
 #if NET_4_0
 using System.Web.Routing;
@@ -104,7 +105,11 @@ namespace System.Web
 		public virtual int SubStatusCode { get { NotImplemented (); return 0; } set { NotImplemented (); } }
 
 		public virtual bool SuppressContent { get { NotImplemented (); return false; } set { NotImplemented (); } }
+#if NET_4_5
+		public virtual bool SuppressFormsAuthenticationRedirect { get { NotImplemented (); return false; } set { NotImplemented (); } }
 
+		public virtual CancellationToken ClientDisconnectedToken { get { NotImplemented (); return CancellationToken.None; } }
+#endif
 		public virtual bool TrySkipIisCustomErrors { get { NotImplemented (); return false; } set { NotImplemented (); } }
 
 

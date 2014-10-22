@@ -39,6 +39,7 @@ using System.Security.Permissions;
 using System.Security.Principal;
 using System.Text;
 using System.Web.Caching;
+using System.Threading;
 
 namespace System.Web
 {
@@ -82,6 +83,11 @@ namespace System.Web
 			set { w.Charset = value; }
 		}
 
+#if NET_4_5
+		public CancellationToken ClientDisconnectedToken {
+			get { return CancellationToken.None; }
+		}
+#endif
 		public override Encoding ContentEncoding {
 			get { return w.ContentEncoding; }
 			set { w.ContentEncoding = value; }

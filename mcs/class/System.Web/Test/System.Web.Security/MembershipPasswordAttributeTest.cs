@@ -23,7 +23,7 @@ namespace MonoTests
 				};
 		}
 
-		[TestCase]
+		[Test]
 		public void MinRequiredPasswordLength ()
 		{
 			var passwordAttribute = new MembershipAttributeTest ();

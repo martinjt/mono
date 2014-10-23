@@ -28,6 +28,8 @@
 //
 
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace System.Web.Security
 {
@@ -42,8 +44,52 @@ namespace System.Web.Security
 		public string PasswordStrengthRegularExpression { get; set; }
 		public Type ResourceType { get; set; }
 
+		public MembershipPasswordAttribute()
+		{
+			if (Membership.Provider != null)
+			{
+				MinRequiredNonAlphanumericCharacters = Membership.Provider.MinRequiredNonAlphanumericCharacters;
+				MinRequiredPasswordLength = Membership.Provider.MinRequiredPasswordLength;
+			}
+			else
+			{
+				MinRequiredPasswordLength = 7;
+				MinRequiredNonAlphanumericCharacters = 1;
+			}
+		}
+
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
+			var pattern = new Regex (@"\W|_");
+			var strengthExpression = new Regex (PasswordStrengthRegularExpression);
+			var password = value as string;
+
+			if (MinRequiredPasswordLength > 0 && 
+				password.Length < MinRequiredPasswordLength)
+			{
+				return new ValidationResult (
+					string.Format(MinNonAlphanumericCharactersError, 
+					validationContext.DisplayName,
+					MinNonAlphanumericCharactersError), validationContext.MemberName);
+			}
+
+			if (MinRequiredNonAlphanumericCharacters > 0 &&
+			    pattern.Match (password).Length < MinRequiredNonAlphanumericCharacters)
+			{
+				return new ValidationResult (
+					string.Format (MinNonAlphanumericCharactersError, 
+					validationContext.DisplayName, 
+					MinRequiredNonAlphanumericCharacters), validationContext.MemberName);
+			}
+
+			if (!string.IsNullOrEmpty(PasswordStrengthRegularExpression) && 
+				new Regex (PasswordStrengthRegularExpression).IsMatch (password))
+			{
+				return new ValidationResult (
+					string.Format (PasswordStrengthError, 
+						validationContext.DisplayName), validationContext.MemberName);
+			}
+
 			return ValidationResult.Success;
 		}
 

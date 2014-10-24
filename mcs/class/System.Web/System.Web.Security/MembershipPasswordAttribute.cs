@@ -61,6 +61,7 @@ namespace System.Web.Security
 			MinNonAlphanumericCharactersError = "The '{0}' field is an invalid password. Password must have {1} or more non-alphanumeric characters.";
 			MinPasswordLengthError = "The '{0}' field is an invalid password. Password must have {1} or more characters.";
 			PasswordStrengthError = "The '{0}' field is an invalid password. It does not meet the password strength requirements";
+			ErrorMessage = "The field {0} is invalid.";
 		}
 
 		protected override ValidationResult IsValid (object value, ValidationContext validationContext)
@@ -104,11 +105,6 @@ namespace System.Web.Security
 			}
 
 			return ValidationResult.Success;
-		}
-
-		public override string FormatErrorMessage (string name)
-		{
-			return base.FormatErrorMessage (name);
 		}
 	}
 }

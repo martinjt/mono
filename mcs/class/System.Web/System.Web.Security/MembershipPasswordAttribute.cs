@@ -82,7 +82,7 @@ namespace System.Web.Security
 			}
 
 			if (!isError && MinRequiredNonAlphanumericCharacters > 0 &&
-			    pattern.Match (password).Length < MinRequiredNonAlphanumericCharacters)	{
+			    pattern.Matches (password).Count < MinRequiredNonAlphanumericCharacters)	{
 				errorMessage = MinNonAlphanumericCharactersError;
 				parameter = MinRequiredNonAlphanumericCharacters;
 				isError = true;

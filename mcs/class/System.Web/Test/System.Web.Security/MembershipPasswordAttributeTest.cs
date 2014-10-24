@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Security;
 using NUnit.Framework;
 
-namespace MonoTests
-{
+namespace MonoTests.System.Web.Security {
+
 	[TestFixture]
 	public class MembershipPasswordAttributeTest
 	{
@@ -26,15 +22,15 @@ namespace MonoTests
 		[Test]
 		public void IsValid ()
 		{
-			var passwordAttribute = new MembershipAttributeTest ();
+			var passwordAttribute = new MembershipPasswordAttributeTestClass ();
 			Assert.IsTrue (passwordAttribute.IsValid (""), "sending an empty password password should should be treated as valid");
 		}
 
 		[Test]
-		public void IsValid_with_ValidationContext()
+		public void IsValid_with_ValidationContext ()
 		{
-			var passwordAttribute = new MembershipAttributeTest ();
-			var result = passwordAttribute.TestValidation("", _validationContext);
+			var passwordAttribute = new MembershipPasswordAttributeTestClass ();
+			var result = passwordAttribute.TestValidation ("", _validationContext);
 			Assert.IsNull (result, "sending an empty password password should return a null response");
 
 			result = passwordAttribute.TestValidation ("a!12345", _validationContext);
@@ -51,7 +47,7 @@ namespace MonoTests
 		[Test]
 		public void MinRequiredPasswordLength ()
 		{
-			var passwordAttribute = new MembershipAttributeTest ();
+			var passwordAttribute = new MembershipPasswordAttributeTestClass ();
 			var result = passwordAttribute.TestValidation ("a!1234", _validationContext);
 			Assert.AreEqual ("The 'testDisplay' field is an invalid password. Password must have 7 or more characters.", result.ErrorMessage, "Error message not correct for lower Min characters");
 			Assert.AreEqual (_validationContext.MemberName, result.MemberNames.FirstOrDefault (), "Member name not correct");
@@ -89,12 +85,12 @@ namespace MonoTests
 		[Test]
 		public void MinRequiredNonAlphanumericCharacters ()
 		{
-			var passwordAttribute = new MembershipAttributeTest ();
+			var passwordAttribute = new MembershipPasswordAttributeTestClass ();
 			var result = passwordAttribute.TestValidation ("a!12345", _validationContext);
 			Assert.AreEqual (ValidationResult.Success, result, "Should succeed with the default 1 non alpha numeric");
 
-			result = passwordAttribute.TestValidation("a123456", _validationContext);
-			Assert.AreEqual("The 'testDisplay' field is an invalid password. Password must have 1 or more non-alphanumeric characters.", result.ErrorMessage, "Expected validation to fail without non-alphanumerics");
+			result = passwordAttribute.TestValidation ("a123456", _validationContext);
+			Assert.AreEqual ("The 'testDisplay' field is an invalid password. Password must have 1 or more non-alphanumeric characters.", result.ErrorMessage, "Expected validation to fail without non-alphanumerics");
 
 
 			passwordAttribute.MinRequiredNonAlphanumericCharacters = 3;
@@ -123,7 +119,14 @@ namespace MonoTests
 			Assert.AreEqual ("There was an error parameter1: testDisplay parameter2: 1", result.ErrorMessage, "Error Message wasn't correct with 2 parameters.");
 		}
 
-		internal class MembershipAttributeTest : MembershipPasswordAttribute
+		[Test]
+		public void FormatErrorMessage ()
+		{
+			var passwordAttribute = new MembershipPasswordAttribute ();
+			Assert.AreEqual ("The field testDisplay2 is invalid.", passwordAttribute.FormatErrorMessage ("testDisplay2"));
+		}
+
+		internal class MembershipPasswordAttributeTestClass : MembershipPasswordAttribute
 		{
 			public ValidationResult TestValidation (object val, ValidationContext context)
 			{

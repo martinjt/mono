@@ -27,7 +27,7 @@ namespace MonoTests
 		public void IsValid ()
 		{
 			var passwordAttribute = new MembershipAttributeTest ();
-			Assert.True (passwordAttribute.IsValid (""), "sending an empty password password should should be treated as valid");
+			Assert.IsTrue (passwordAttribute.IsValid (""), "sending an empty password password should should be treated as valid");
 		}
 
 		[Test]
@@ -86,14 +86,13 @@ namespace MonoTests
 			result = passwordAttribute.TestValidation("a!&12345", _validationContext);
 			Assert.AreEqual("The 'testDisplay' field is an invalid password. Password must have 3 or more non-alphanumeric characters.", result.ErrorMessage, "Expected validation to fail without 3 non-alphanumerics");
 
-
 			//TODO: This test should pass on .NET but it isn't for some reason.
 			//result = passwordAttribute.TestValidation ("a!?&132154", _validationContext);
 			//Assert.AreEqual (ValidationResult.Success, result, "Should succeed with 3 non alpha numerics");
 
 			passwordAttribute.MinRequiredNonAlphanumericCharacters = 0;
-			result = passwordAttribute.TestValidation("a12345", _validationContext);
-			Assert.AreEqual(ValidationResult.Success, result, "Should succeed with 3 non alpha numerics");
+			result = passwordAttribute.TestValidation("a123456", _validationContext);
+			Assert.AreEqual(ValidationResult.Success, result, "Should succeed with 0 non alpha numerics");
 		}
 
 		internal class MembershipAttributeTest : MembershipPasswordAttribute

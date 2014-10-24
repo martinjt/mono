@@ -50,45 +50,57 @@ namespace System.Web.Security
 			{
 				MinRequiredNonAlphanumericCharacters = Membership.Provider.MinRequiredNonAlphanumericCharacters;
 				MinRequiredPasswordLength = Membership.Provider.MinRequiredPasswordLength;
+				PasswordStrengthRegularExpression = Membership.Provider.PasswordStrengthRegularExpression;
 			}
 			else
 			{
 				MinRequiredPasswordLength = 7;
 				MinRequiredNonAlphanumericCharacters = 1;
+				PasswordStrengthRegularExpression = @"(?=.{6,})(?=(.*\d){1,})(?=(.*\W){1,})";
 			}
-			MinNonAlphanumericCharactersError = "";
+			MinNonAlphanumericCharactersError = "The '{0}' field is an invalid password. Password must have {1} or more non-alphanumeric characters.";
 			MinPasswordLengthError = "The '{0}' field is an invalid password. Password must have {1} or more characters.";
+			PasswordStrengthError = "The '{0}' field is an invalid password. It does not meet the password strength requirements";
 		}
 
 		protected override ValidationResult IsValid (object value, ValidationContext validationContext)
 		{
-			var pattern = new Regex (@"\W|_");
 			var password = value as string;
+			var isError = false;
+			if (string.IsNullOrEmpty(password))
+				return null;
+
+			var errorMessage = string.Empty;
+			var parameter = 0;
+			var pattern = new Regex (@"\W|_");
 
 			if (MinRequiredPasswordLength > 0 && 
-				password.Length < MinRequiredPasswordLength)
-			{
-				return new ValidationResult (
-					string.Format(MinPasswordLengthError, 
-					validationContext.DisplayName,
-					MinRequiredPasswordLength), new[] {validationContext.MemberName});
+				password.Length < MinRequiredPasswordLength) {
+				errorMessage = MinPasswordLengthError;
+				parameter = MinRequiredPasswordLength;
+				isError = true;
 			}
 
-			if (MinRequiredNonAlphanumericCharacters > 0 &&
-			    pattern.Match (password).Length < MinRequiredNonAlphanumericCharacters)
-			{
-				return new ValidationResult (
-					string.Format (MinNonAlphanumericCharactersError, 
-					validationContext.DisplayName, 
-					MinRequiredNonAlphanumericCharacters), new[] {validationContext.MemberName});
+			if (!isError && MinRequiredNonAlphanumericCharacters > 0 &&
+			    pattern.Match (password).Length < MinRequiredNonAlphanumericCharacters)	{
+				errorMessage = MinNonAlphanumericCharactersError;
+				parameter = MinRequiredNonAlphanumericCharacters;
+				isError = true;
 			}
 
-			if (!string.IsNullOrEmpty (PasswordStrengthRegularExpression) && 
-				new Regex (PasswordStrengthRegularExpression).IsMatch (password))
-			{
+			if (!isError && !string.IsNullOrEmpty (PasswordStrengthRegularExpression) && 
+				new Regex (PasswordStrengthRegularExpression).IsMatch (password)) {
+				errorMessage = PasswordStrengthError;
+				isError = true;
+			}
+
+			if (isError) {
+				if (validationContext == null)
+					return new ValidationResult("error");
+
 				return new ValidationResult (
-					string.Format (PasswordStrengthError, 
-						validationContext.DisplayName), new[] {validationContext.MemberName});
+					string.Format (errorMessage, validationContext.DisplayName, parameter), 
+							new[] {validationContext.MemberName});
 			}
 
 			return ValidationResult.Success;

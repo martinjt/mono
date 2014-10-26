@@ -211,6 +211,9 @@ namespace System.Web
 #if NET_4_5
 		public override UnvalidatedRequestValuesBase Unvalidated { 
 			get { return new UnvalidatedRequestValuesWrapper (w.Unvalidated); } 
+
+		public override ReadEntityBodyMode ReadEntityBodyMode {
+			get { return ReadEntityBodyMode.Classic; }
 		}
 #endif
 

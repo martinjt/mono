@@ -107,7 +107,6 @@
     <Compile Include="Mono.Web.Util\SettingsMappingManager.cs" />
     <Compile Include="Mono.Web.Util\SettingsMappingWhat.cs" />
     <Compile Include="System.Web.Caching\AggregateCacheDependency.cs" />
-    <Compile Include="System.Web.Caching\Cache.cs" />
     <Compile Include="System.Web.Caching\CacheDependency.cs" />
     <Compile Include="System.Web.Caching\CachedRawResponse.cs" />
     <Compile Include="System.Web.Caching\CachedVaryBy.cs" />
@@ -280,7 +279,6 @@
     <Compile Include="System.Web.Configuration_2.0\HttpModulesSection.cs" />
     <Compile Include="System.Web.Configuration_2.0\HttpRuntimeSection.cs" />
     <Compile Include="System.Web.Configuration_2.0\ICapabilitiesProcess.cs" />
-    <Compile Include="System.Web.Configuration_2.0\IConfigMapPath.cs" />
     <Compile Include="System.Web.Configuration_2.0\IConfigMapPathFactory.cs" />
     <Compile Include="System.Web.Configuration_2.0\IdentitySection.cs" />
     <Compile Include="System.Web.Configuration_2.0\IRemoteWebConfigurationHostServer.cs" />
@@ -359,7 +357,6 @@
     <Compile Include="System.Web.Configuration_2.0\VirtualDirectoryMappingCollection.cs" />
     <Compile Include="System.Web.Configuration_2.0\WebApplicationLevel.cs" />
     <Compile Include="System.Web.Configuration_2.0\WebConfigurationFileMap.cs" />
-    <Compile Include="System.Web.Configuration_2.0\WebConfigurationHost.cs" />
     <Compile Include="System.Web.Configuration_2.0\WebConfigurationManager.cs" />
     <Compile Include="System.Web.Configuration_2.0\WebContext.cs" />
     <Compile Include="System.Web.Configuration_2.0\WebControlsSection.cs" />
@@ -379,7 +376,6 @@
     <Compile Include="System.Web.Hosting\DefaultVirtualDirectory.cs" />
     <Compile Include="System.Web.Hosting\DefaultVirtualFile.cs" />
     <Compile Include="System.Web.Hosting\DefaultVirtualPathProvider.cs" />
-    <Compile Include="System.Web.Hosting\HostingEnvironment.cs" />
     <Compile Include="System.Web.Hosting\IAppDomainFactory.cs" />
     <Compile Include="System.Web.Hosting\IApplicationHost.cs" />
     <Compile Include="System.Web.Hosting\IAppManagerAppDomainFactory.cs" />
@@ -1286,7 +1282,6 @@
     <Compile Include="System.Web\HttpResponseHeader.cs" />
     <Compile Include="System.Web\HttpResponseStream.cs" />
     <Compile Include="System.Web\HttpResponseSubstitutionCallback.cs" />
-    <Compile Include="System.Web\HttpRuntime.cs" />
     <Compile Include="System.Web\HttpServerUtility.cs" />
     <Compile Include="System.Web\HttpStaticObjectsCollection.cs" />
     <Compile Include="System.Web\HttpTaskAsyncHandler.cs" />
@@ -1337,7 +1332,6 @@
     <Compile Include="System.Web\TraceData.cs" />
     <Compile Include="System.Web\TraceManager.cs" />
     <Compile Include="System.Web\TraceMode.cs" />
-    <Compile Include="System.Web\VirtualPath.cs" />
     <Compile Include="System.Web\VirtualPathUtility.cs" />
     <Compile Include="System.Web\WebCategoryAttribute.cs" />
     <Compile Include="System.Web\WebPageTraceListener.cs" />
@@ -1452,6 +1446,80 @@
     </Compile>
     <Compile Include="..\..\..\external\referencesource\System.Web\Util\VersionUtil.cs">
       <Link>System.Web.Util\VersionUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Configuration\WebConfigurationHost.cs">
+      <Link>System.Web.Configuration_2.0\WebConfigurationHost.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\ExceptionUtil.cs">
+      <Link>System.Web.Util\ExceptionUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Configuration\WebLevel.cs">
+      <Link>System.Web.Configuration_2.0\WebLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Configuration\IConfigMapPath.cs">
+      <Link>System.Web.Configuration_2.0\IConfigMapPath.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\HttpRuntime.cs">
+      <Link>System.Web\HttpRuntime.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\VirtualPath.cs">
+      <Link>System.Web\VirtualPath.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Hosting\HostingEnvironment.cs">
+      <Link>System.Web.Hosting\HostingEnvironment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Hosting\HostingEnvironmentException.cs">
+      <Link>System.Web.Hosting\HostingEnvironmentException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\FileUtil.cs">
+      <Link>System.Web.Util\FileUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Hosting\BackgroundWorkScheduler.cs">
+      <Link>System.Web.Hosting\BackgroundWorkScheduler.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Hosting\ObjectCacheHost.cs">
+      <Link>System.Web.Hosting\ObjectCacheHost.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Hosting\SuspendManager.cs">
+      <Link>System.Web.Hosting\SuspendManager.cs</Link>
+    </Compile>
+    <Compile Include="System.Web.Hosting\ISAPIApplicationHost.cs" />
+    <Compile Include="..\..\..\external\referencesource\System.Web\Configuration\serverconfig.cs">
+      <Link>System.Web.Configuration_2.0\serverconfig.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Hosting\IProcessHostSupportFunctions.cs">
+      <Link>System.Web.Hosting\IProcessHostSupportFunctions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\Misc.cs">
+      <Link>System.Web.Util\Misc.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\IdleTimeoutMonitor.cs">
+      <Link>System.Web\IdleTimeoutMonitor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Configuration\FcnMode.cs">
+      <Link>System.Web.Configuration_2.0\FcnMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\Debug.cs">
+      <Link>System.Web.Util\Debug.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\DateTimeUtil.cs">
+      <Link>System.Web.Util\DateTimeUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\Msec.cs">
+      <Link>System.Web.Util\Msec.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Cache\SRef.cs">
+      <Link>System.Web.Caching\SRef.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\SystemInfo.cs">
+      <Link>System.Web.Util\SystemInfo.cs</Link>
+    </Compile>
+    <Compile Include="System.Web.Caching\Cache.cs" />
+    <Compile Include="..\..\..\external\referencesource\System.Web\Util\versioninfo.cs">
+      <Link>System.Web.Util\versioninfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\external\referencesource\System.Web\UnsafeNativeMethods.cs">
+      <Link>System.Web\UnsafeNativeMethods.cs</Link>
     </Compile>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

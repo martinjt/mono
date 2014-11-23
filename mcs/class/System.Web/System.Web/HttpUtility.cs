@@ -180,6 +180,76 @@ namespace System.Web {
 			return UrlDecode (bytes, 0, bytes.Length, e);
 		}
 
+		// START: Copy from Reference source
+		internal static String FormatPlainTextAsHtml(String s) {
+			if (s == null)
+				return null;
+
+			StringBuilder builder = new StringBuilder();
+			StringWriter writer = new StringWriter(builder);
+
+			FormatPlainTextAsHtml(s, writer);
+
+			return builder.ToString();
+		}
+
+		internal static void FormatPlainTextAsHtml(String s, TextWriter output) {
+			if (s == null)
+				return;
+
+			int cb = s.Length;
+
+			char prevCh = '\0';
+
+			for (int i=0; i<cb; i++) {
+				char ch = s[i];
+				switch (ch) {
+					case '<':
+						output.Write("&lt;");
+						break;
+					case '>':
+						output.Write("&gt;");
+						break;
+					case '"':
+						output.Write("&quot;");
+						break;
+					case '&':
+						output.Write("&amp;");
+						break;
+					case ' ':
+						if (prevCh == ' ')
+							output.Write("&nbsp;");
+						else
+							output.Write(ch);
+						break;
+					case '\r':
+						// Ignore \r, only handle \n
+						break;
+					case '\n':
+						output.Write("<br>");
+						break;
+
+						// 
+					default:
+						#if ENTITY_ENCODE_HIGH_ASCII_CHARS
+						// The seemingly arbitrary 160 comes from RFC
+						if (ch >= 160 && ch < 256) {
+						output.Write("&#");
+						output.Write(((int)ch).ToString(NumberFormatInfo.InvariantInfo));
+						output.Write(';');
+						break;
+						}
+						#endif // ENTITY_ENCODE_HIGH_ASCII_CHARS
+
+						output.Write(ch);
+						break;
+				}
+
+				prevCh = ch;
+			}
+		}
+		// END: Copy from Reference source
+
 		static int GetInt (byte b)
 		{
 			char c = (char) b;

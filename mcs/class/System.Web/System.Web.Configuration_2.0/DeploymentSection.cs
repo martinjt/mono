@@ -58,7 +58,12 @@ namespace System.Web.Configuration {
 		protected internal override ConfigurationPropertyCollection Properties {
 			get { return properties; }
 		}
-
+			
+		internal static bool RetailInternal {
+			get {
+				return false;
+			}
+		}
 	}
 
 }

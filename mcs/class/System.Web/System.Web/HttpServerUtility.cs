@@ -40,6 +40,11 @@ using System.Threading;
 using System.Web.Configuration;
 using System.Web.SessionState;
 
+
+#if CROSS_PLATFORM
+using System.Globalization;
+using System.Collections;
+#endif
 namespace System.Web
 {
 	//
@@ -50,7 +55,11 @@ namespace System.Web
 	[AspNetHostingPermission (SecurityAction.LinkDemand, Level = AspNetHostingPermissionLevel.Minimal)]
 	public sealed class HttpServerUtility {
 		HttpContext context;
-		
+
+		#if CROSS_PLATFORM
+		private static IDictionary _cultureCache = Hashtable.Synchronized(new Hashtable());
+		#endif
+
 		internal HttpServerUtility (HttpContext context)
 		{
 			this.context = context;
@@ -77,6 +86,19 @@ namespace System.Web
 		public object CreateObjectFromClsid (string clsid)
 		{
 			throw new HttpException (500, "COM is not supported");
+		}
+
+		// Internal static method that returns a read-only, non-user override accounted, CultureInfo object
+		internal static CultureInfo CreateReadOnlyCultureInfo(string name) {
+			if (!_cultureCache.Contains(name)) {
+				// To be threadsafe, get the lock before creating
+				lock (_cultureCache) {
+					if (_cultureCache[name] == null) {
+						_cultureCache[name] = CultureInfo.ReadOnly(new CultureInfo(name));
+					}
+				}
+			}
+			return (CultureInfo)_cultureCache[name];
 		}
 
 		public void Execute (string path)

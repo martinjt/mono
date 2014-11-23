@@ -162,7 +162,7 @@ namespace System.Web
 
 		internal Cache InternalCache {
 			get {
-				return HttpRuntime.InternalCache;
+				return HttpRuntime.CacheInternal;
 			}
 		}
 		
@@ -663,7 +663,7 @@ namespace System.Web
 		internal TimeSpan ConfigTimeout {
 			get {
 				if (config_timeout == null)
-					config_timeout = HttpRuntime.Section.ExecutionTimeout;
+					config_timeout = ((HttpRuntimeSection) WebConfigurationManager.GetSection ("system.web/httpRuntime")).ExecutionTimeout;
 
 				return (TimeSpan) config_timeout;
 			}

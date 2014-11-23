@@ -780,6 +780,15 @@ public partial class Page : TemplateControl, IHttpHandler
 			return new HtmlTextWriter (tw);
 	}
 
+	internal static HtmlTextWriter CreateHtmlTextWriterInternal(TextWriter tw, HttpRequest request) {
+		if (request != null && request.Browser != null) {
+			return request.Browser.CreateHtmlTextWriterInternal(tw);
+		}
+
+		// Fall back to Html 3.2
+		return new Html32TextWriter(tw);
+	}
+
 	[EditorBrowsable (EditorBrowsableState.Never)]
 	public void DesignerInitialize ()
 	{

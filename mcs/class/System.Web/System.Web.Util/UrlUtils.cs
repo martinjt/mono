@@ -82,11 +82,11 @@ namespace System.Web.Util {
 				len++;
 			}			
 
-			if ((len < SessionId.IdLength + 3) || (path [1] != '(') ||
-			    (path [SessionId.IdLength + 2] != ')'))
+			if ((len < 27) || (path [1] != '(') ||
+			    (path [26] != ')'))
 				return null;
 
-			return path.Substring (2, SessionId.IdLength);
+			return path.Substring (2, 24);
 #endif
 		}
 

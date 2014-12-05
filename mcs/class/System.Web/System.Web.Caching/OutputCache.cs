@@ -38,6 +38,7 @@ namespace System.Web.Caching
 {
 	public static class OutputCache
 	{
+        internal const string ASPNET_INTERNAL_PROVIDER_NAME = "AspNetInternalProvider";
 		internal const string DEFAULT_PROVIDER_NAME = "AspNetInternalProvider";
 		
 		static readonly object initLock = new object ();

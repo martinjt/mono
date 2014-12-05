@@ -99,6 +99,7 @@ net_4_5_dirs := \
 	Managed.Windows.Forms		\
 	Mono.Data.Sqlite		\
 	System.Web.ApplicationServices	\
+	Microsoft.Build.Utilities	\
 	System.Web			\
 	System.Web.Services		\
 	System.Runtime.Remoting		\

@@ -13,7 +13,7 @@ System.Web.Caching/OutputCacheProviderCollection.cs
 System.Web.Caching/ResponseElement.cs
 System.Web.Caching/SubstitutionResponseElement.cs
 System.Web.Configuration_2.0/VersionConverter.cs
-System.Web.Configuration_2.0/MachineKeyCompatibilityMode.cs
+../../../external/referencesource/System.Web/Configuration/MachineKeyCompatibilityMode.cs
 System.Web.Configuration_2.0/HttpCapabilitiesProvider.cs
 System.Web.Configuration_2.0/HttpCapabilitiesDefaultProvider.cs
 System.Web.Compilation/FolderLevelBuildProviderAppliesTo.cs

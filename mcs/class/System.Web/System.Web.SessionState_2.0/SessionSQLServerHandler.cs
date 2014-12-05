@@ -92,7 +92,7 @@ namespace System.Web.SessionState
 			connectionString = sessionConfig.SqlConnectionString;
 			string dbProviderName;
 			
-			if (String.IsNullOrEmpty (connectionString) || String.Compare (connectionString, SessionStateSection.DefaultSqlConnectionString, StringComparison.Ordinal) == 0) {
+			if (String.IsNullOrEmpty (connectionString) || String.Compare (connectionString, SessionStateModule.SQL_CONNECTION_STRING_DEFAULT, StringComparison.Ordinal) == 0) {
 				connectionString = "Data Source=|DataDirectory|/ASPState.sqlite;Version=3";
 				dbProviderName = defaultDbFactoryTypeName;
 			} else {

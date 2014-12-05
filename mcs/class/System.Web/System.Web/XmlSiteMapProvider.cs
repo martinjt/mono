@@ -501,7 +501,7 @@ namespace System.Web
 			watchers.Add (watcher);
 		}
 		
-		protected override void RemoveNode (SiteMapNode node)
+		protected internal override void RemoveNode (SiteMapNode node)
 		{
 			base.RemoveNode (node);
 		}

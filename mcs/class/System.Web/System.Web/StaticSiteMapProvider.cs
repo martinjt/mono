@@ -161,7 +161,7 @@ namespace System.Web
 			return CheckAccessibility (parent);
 		}
 		
-		protected override void RemoveNode (SiteMapNode node)
+		protected internal override void RemoveNode (SiteMapNode node)
 		{
 			if (node == null)
 				throw new ArgumentNullException("node");

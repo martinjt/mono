@@ -80,7 +80,7 @@ namespace System.Web
 			firstRun = true;
 
 			try {
-				WebConfigurationManager.Init ();
+				HttpConfigurationSystem.EnsureInit ();
 				SettingsMappingManager.Init ();
 				runtime_section = (HttpRuntimeSection) WebConfigurationManager.GetSection ("system.web/httpRuntime");
 			} catch (Exception ex) {
@@ -281,7 +281,7 @@ namespace System.Web
 		
 		public static Version TargetFramework {
 			get {
-				return runtime_section.TargetFramework;
+				return new Version(runtime_section.TargetFramework);
 			}
 		}
 		

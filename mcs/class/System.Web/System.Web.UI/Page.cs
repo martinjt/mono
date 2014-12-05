@@ -126,6 +126,12 @@ public partial class Page : TemplateControl, IHttpHandler
 	internal const string CallbackArgumentID = "__CALLBACKPARAM";
 	internal const string CallbackSourceID = "__CALLBACKID";
 	internal const string PreviousPageID = "__PREVIOUSPAGE";
+    internal const bool EnableViewStateMacDefault = true;
+    internal const bool EnableEventValidationDefault = true;
+
+    internal static readonly int DefaultMaxPageStateFieldLength = -1;
+    internal static readonly int DefaultAsyncTimeoutSeconds = 45;
+
 
 	int maxPageStateFieldLength = -1;
 	string uniqueFilePathSuffix;

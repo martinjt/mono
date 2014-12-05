@@ -236,7 +236,7 @@ NUNIT_APP_GLOBALRESOURCES_FILES = $(TEST_APP_GLOBALRESOURCES_FILES)
 
 ifneq (1, $(FRAMEWORK_VERSION_MAJOR))
 OTHER_RES += $(RESOURCE_FILES_2)
-OTHER_LIB_MCS_FLAGS = -d:INSIDE_SYSTEM_WEB -nowarn:618 -r:System.Configuration.dll -r:Mono.Data.Sqlite.dll
+OTHER_LIB_MCS_FLAGS = -d:INSIDE_SYSTEM_WEB -nowarn:618 -r:System.Configuration.dll -r:Mono.Data.Sqlite.dll -d:MONO
 endif
 
 ifeq (4, $(FRAMEWORK_VERSION_MAJOR))
@@ -256,6 +256,7 @@ LIB_MCS_FLAGS = \
 	-r:System.EnterpriseServices.dll \
 	-r:System.Runtime.Serialization.Formatters.Soap \
 	-r:System.ComponentModel.DataAnnotations.dll \
+	-r:Microsoft.Build.Utilities.v4.0.dll	\
 	$(OTHER_LIB_MCS_FLAGS) \
 	$(RESX_RES:%=/resource:%) \
 	$(OTHER_RES:%=/resource:%)

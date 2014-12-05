@@ -60,6 +60,10 @@ namespace System.Web.SessionState
 				this.IsReadOnly = isReadOnly;
 			}
 		}
+        internal const string SQL_CONNECTION_STRING_DEFAULT = "data source=localhost;Integrated Security=SSPI";
+        internal const string STATE_CONNECTION_STRING_DEFAULT = "tcpip=loopback:42424";
+        internal const int TIMEOUT_DEFAULT = 20;
+        internal const SessionStateMode MODE_DEFAULT = SessionStateMode.InProc;
 
 		internal const string HeaderName = "AspFilterSessionId";
 		internal const string CookielessFlagName = "_SessionIDManager_IsCookieLess";

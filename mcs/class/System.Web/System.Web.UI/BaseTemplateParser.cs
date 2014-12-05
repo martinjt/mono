@@ -53,7 +53,7 @@ namespace System.Web.UI
 					throw new HttpException ("Internal error. Missing configuration section.");
 
 				string extension = VirtualPathUtility.GetExtension (virtualPath);
-				Type btype = cfg.BuildProviders.GetProviderTypeForExtension (extension);
+				Type btype = System.Web.Compilation.BuildProvider.GetProviderTypeForExtension (extension);
 				VirtualReferenceType reftype;
 
 				if (btype == null)

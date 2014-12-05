@@ -35,6 +35,14 @@ namespace System.Web.SessionState
 {
 	public class SessionIDManager : ISessionIDManager
 	{
+		internal const String COOKIELESS_SESSION_KEY = "AspCookielessSession";
+        internal const String COOKIELESS_BOOL_SESSION_KEY = "AspCookielessBoolSession";
+        internal const String ASP_SESSIONID_MANAGER_INITIALIZEREQUEST_CALLED_KEY = "AspSessionIDManagerInitializeRequestCalled";
+        internal const HttpCookieMode COOKIEMODE_DEFAULT = HttpCookieMode.UseCookies;
+        internal const String SESSION_COOKIE_DEFAULT = "ASP.NET_SessionId";
+        internal const int SESSION_ID_LENGTH_LIMIT = 80;
+
+
 		SessionStateSection config;
 		
 		public SessionIDManager ()

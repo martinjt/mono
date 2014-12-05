@@ -60,8 +60,19 @@ namespace System.Web.Security
 				return;
 
 			HttpRequest req = context.Request;
+<<<<<<< HEAD
 			AuthorizationSection config = (AuthorizationSection) WebConfigurationManager.GetSection ("system.web/authorization", req.Path, context);
 			if (!config.IsValidUser (context.User, req.HttpMethod)) {
+=======
+#if NET_2_0
+			AuthorizationSection config = (AuthorizationSection) WebConfigurationManager.GetSection ("system.web/authorization", req.Path);
+#else
+			AuthorizationConfig config = (AuthorizationConfig) context.GetConfig ("system.web/authorization");
+			if (config == null)
+				return;
+#endif
+			if (!config.IsUserAllowed (context.User, req.RequestType)) {
+>>>>>>> further configuration changes
 				HttpException e = new HttpException (401, "Unauthorized");
 				HttpResponse response = context.Response;
 				
@@ -75,7 +86,7 @@ namespace System.Web.Security
 		{
 			AuthorizationSection config = (AuthorizationSection) WebConfigurationManager.GetSection ("system.web/authorization", virtualPath);
 
-			return config == null ? true : config.IsValidUser (user, verb);
+			return config == null ? true : config.IsUserAllowed (user, verb);
 		}
 	}
 }
